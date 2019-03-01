@@ -1,4 +1,4 @@
-FROM centos/php-71-centos7
+FROM centos/php-72-centos7
 
 USER 0
 
@@ -6,17 +6,17 @@ ENV COMPOSER_ALLOW_XDEBUG=1
 
 # Install Apache httpd and PHP
 RUN yum install -y --setopt=tsflags=nodocs epel-release && \
-    INSTALL_PKGS="sclo-php71-php-pecl-redis \
-                  sclo-php71-php-pecl-http sclo-php71-php-pecl-xdebug \ 
-                  sclo-php71-php-pecl-amqp sclo-php71-php-pecl-msgpack \
-                  sclo-php71-php-pecl-memcached sclo-php71-php-pecl-lzf \
-                  sclo-php71-php-pecl-imagick sclo-php71-php-pecl-igbinary \
+    INSTALL_PKGS="sclo-php72-php-pecl-redis \
+                  sclo-php72-php-pecl-http sclo-php72-php-pecl-xdebug \ 
+                  sclo-php72-php-pecl-amqp sclo-php72-php-pecl-msgpack \
+                  sclo-php72-php-pecl-memcached sclo-php72-php-pecl-lzf \
+                  sclo-php72-php-pecl-imagick sclo-php72-php-pecl-igbinary \
                   jpegoptim pngquant" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y
 
-ADD php.d/* /etc/opt/rh/rh-php71/php.d/
+ADD php.d/* /etc/opt/rh/rh-php72/php.d/
 
 # Add Composer
 RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer -O - -q | php -- --quiet --install-dir=/usr/bin --filename=composer && \
