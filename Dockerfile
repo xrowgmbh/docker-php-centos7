@@ -32,4 +32,9 @@ RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/i
 RUN curl -L https://github.com/platformsh/platformsh-cli/releases/download/v3.38.1/platform.phar > /usr/bin/platform && \
     chmod 755 /usr/bin/platform
 
+
+# Add yarn
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
+    yum install -y yarn
+
 USER 1001
