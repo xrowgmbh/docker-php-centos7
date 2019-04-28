@@ -37,4 +37,7 @@ RUN curl -L https://github.com/platformsh/platformsh-cli/releases/download/v3.38
 RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
     yum install -y yarn
 
+# Reset permissions of filesystem to default values
+RUN /usr/libexec/container-setup && rpm-file-permissions
+
 USER 1001
